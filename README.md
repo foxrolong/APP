@@ -118,4 +118,4 @@ Nếu `npx prisma migrate dev` báo `Schema engine error` khi database chưa t�
 New-Item -ItemType File -Force prisma/dev.db
 npx prisma migrate dev
 ```
-Nếu bạn không biết làm thì bạn có thể tải file:QuanLyCuaHangSach-1.0.0.exe cài đặt trực tiếp lên máy bạn
+Nếu bạn không biết làm thì bạn có thể tải file:QuanLyCuaHangSach-1.0.0.exe(https://github.com/foxrolong/APP/releases/tag/v1.0.0) cài đặt trực tiếp lên máy bạn
