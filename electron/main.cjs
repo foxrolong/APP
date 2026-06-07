@@ -145,6 +145,7 @@ async function createWindow() {
     minHeight: 700,
     title: "Quản lý cửa hàng sách",
     autoHideMenuBar: true,
+    icon: path.join(__dirname, "..", "public", "icon.png"),
     webPreferences: {
       contextIsolation: true,
       nodeIntegration: false,

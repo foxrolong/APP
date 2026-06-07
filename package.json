@@ -60,6 +60,7 @@
     "compression": "store",
     "files": [
       "electron/**/*",
+      "public/**/*",
       "package.json"
     ],
     "extraResources": [
@@ -91,7 +92,8 @@
             "x64"
           ]
         }
-      ]
+      ],
+      "icon": "public/icon.png"
     },
     "portable": {
       "artifactName": "QuanLyCuaHangSach-${version}.exe"
