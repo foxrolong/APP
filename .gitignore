@@ -1,0 +1,10 @@
+node_modules
+.next
+release
+dist
+*.log
+# Keep environment variables out of version control
+.env
+
+/generated/prisma
+prisma/dev.db

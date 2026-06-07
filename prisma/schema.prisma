@@ -1,0 +1,132 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model NhanVien {
+  id          Int                 @id @default(autoincrement())
+  maNV        String              @unique
+  hoTen       String
+  chucVu      String
+  taiKhoan    String              @unique
+  matKhau     String
+  vaiTro      String
+  trangThai   String              @default("DANG_HOAT_DONG")
+  phieuNhaps  PhieuNhap[]
+  hoaDons     HoaDon[]
+  baoCaos     BaoCao[]
+  createdAt   DateTime            @default(now())
+  updatedAt   DateTime            @updatedAt
+}
+
+model Sach {
+  id                  Int                    @id @default(autoincrement())
+  maSach              String                 @unique
+  tenSach             String
+  tacGia              String
+  theLoai             String
+  nhaXuatBan          String
+  namXuatBan          Int
+  giaBia              Float
+  soTrang             Int
+  soLuongTon          Int
+  viTriKe             String
+  mucTonToiThieu      Int
+  chiTietPhieuNhaps   ChiTietPhieuNhap[]
+  chiTietHoaDons      ChiTietHoaDon[]
+  doiTras             DoiTra[]
+  createdAt           DateTime               @default(now())
+  updatedAt           DateTime               @updatedAt
+}
+
+model NhaCungCap {
+  id              Int          @id @default(autoincrement())
+  maNCC           String       @unique
+  tenNCC          String
+  diaChi          String
+  soDienThoai     String
+  email           String
+  phieuNhaps      PhieuNhap[]
+  createdAt       DateTime     @default(now())
+  updatedAt       DateTime     @updatedAt
+}
+
+model PhieuNhap {
+  id              Int                    @id @default(autoincrement())
+  maPN            String                 @unique
+  ngayNhap        DateTime               @default(now())
+  nhaCungCapId    Int
+  nhanVienId      Int
+  tongTienNhap    Float
+  nhaCungCap      NhaCungCap             @relation(fields: [nhaCungCapId], references: [id])
+  nhanVien        NhanVien               @relation(fields: [nhanVienId], references: [id])
+  chiTiet         ChiTietPhieuNhap[]
+}
+
+model ChiTietPhieuNhap {
+  id              Int          @id @default(autoincrement())
+  phieuNhapId     Int
+  sachId          Int
+  soLuongNhap     Int
+  donGiaNhap      Float
+  thanhTien       Float
+  phieuNhap       PhieuNhap    @relation(fields: [phieuNhapId], references: [id], onDelete: Cascade)
+  sach            Sach         @relation(fields: [sachId], references: [id])
+}
+
+model HoaDon {
+  id                    Int                    @id @default(autoincrement())
+  maHD                  String                 @unique
+  ngayLap               DateTime               @default(now())
+  nhanVienId            Int
+  tongTien              Float
+  tongChietKhau         Float
+  thanhTien             Float
+  hinhThucThanhToan     String
+  trangThai             String                 @default("HOAN_THANH")
+  nhanVien              NhanVien               @relation(fields: [nhanVienId], references: [id])
+  chiTiet               ChiTietHoaDon[]
+  doiTras               DoiTra[]
+}
+
+model ChiTietHoaDon {
+  id              Int          @id @default(autoincrement())
+  hoaDonId        Int
+  sachId          Int
+  soLuongBan      Int
+  donGiaBan       Float
+  chietKhau       Float        @default(0)
+  thanhTien       Float
+  hoaDon          HoaDon       @relation(fields: [hoaDonId], references: [id], onDelete: Cascade)
+  sach            Sach         @relation(fields: [sachId], references: [id])
+}
+
+model DoiTra {
+  id              Int                @id @default(autoincrement())
+  maDoiTra        String             @unique
+  hoaDonId        Int
+  sachId          Int
+  tenKhachHang    String
+  soDienThoai     String
+  lyDo            String
+  hinhThucXuLy    String
+  trangThai       String
+  congLaiTonKho   Boolean            @default(false)
+  ngayTao         DateTime           @default(now())
+  hoaDon          HoaDon             @relation(fields: [hoaDonId], references: [id])
+  sach            Sach               @relation(fields: [sachId], references: [id])
+}
+
+model BaoCao {
+  id              Int       @id @default(autoincrement())
+  loaiBaoCao      String
+  tuNgay          DateTime
+  denNgay         DateTime
+  ngayLap         DateTime  @default(now())
+  nhanVienLapId   Int
+  nhanVienLap     NhanVien  @relation(fields: [nhanVienLapId], references: [id])
+}
