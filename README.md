@@ -7,8 +7,7 @@
 ## 📥 Tải Xuống
 
 ### 🖥️ Windows Desktop App (Recommended)
-- **[QuanLyCuaHangSach-1.0.0.exe](releases)** - Tải EXE, chạy trực tiếp, không cần cài đặt
-
+- **[QuanLyCuaHangSach-1.0.0.exe](https://github.com/foxrolong/APP/releases/tag/v1.0.0)** - Tải EXE, chạy trực tiếp, không cần cài đặt
 ### 🌐 Web Development
 ```bash
 npm install
@@ -118,6 +117,3 @@ Nếu `npx prisma migrate dev` báo `Schema engine error` khi database chưa t�
 New-Item -ItemType File -Force prisma/dev.db
 npx prisma migrate dev
 ```
-FILE CÀI ĐẶT TRỰC TIẾP
-QuanLyCuaHangSach-1.0.0.exe(https://github.com/foxrolong/APP/releases/tag/v1.0.0)
-HÃY DÙNG THỬ BẢN NÀY CẢU TÔI.
